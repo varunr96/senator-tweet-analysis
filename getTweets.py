@@ -1,9 +1,9 @@
 import tweepy
 from tweepy import OAuthHandler
- 
+
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
- 
+
 api = tweepy.API(auth)
 
 senators = set()
@@ -33,6 +33,5 @@ for senator in senators:
 	    else:
 	        break
 	    page += 1
-	break
 
 f.close()
