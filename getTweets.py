@@ -48,13 +48,9 @@ for senator in senators:
 				num_tweets += 1
 		else:
 			print('{}: scrapped {} tweets!'.format(senator, num_tweets))
+			all_num_tweets[senator] = num_tweets
 			break
 		page += 1
-	json_data = json.dumps(all_tweets, indent=4)
-	f = open('tweets.json', 'w')
-	f.write(json_data)
-	f.close()
-	exit(1)
 
 json_data = json.dumps(all_tweets, indent=4)
 f = open('tweets.json', 'w')
