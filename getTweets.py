@@ -1,7 +1,6 @@
 import tweepy
 from tweepy import OAuthHandler
-import json
-import re
+import json, re
 
 consumer_key = 'jHtpxFPXLdFYjo1v4GUQQBFA4'
 consumer_secret = 'mxYbUQMq0UtdIMpDcqX9cuCcZqmi2wHU4CXb3bBXl5RGl9w8aT'
