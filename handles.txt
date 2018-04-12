@@ -1,0 +1,100 @@
+Alabama,M,SenShelby
+Alabama,M,GDouglasJones
+Alaska,F,lisamurkowski
+Alaska,M,SenDanSullivan
+Arizona,M,SenJohnMcCain
+Arizona,M,JeffFlake
+Arkansa,M,SenTomCotton
+Arkansas,M,JohnBoozman
+California,F,SenFeinstein
+California,F,SenKamalaHarris
+Colorado,M,SenBennetCO
+Colorado,M,SenCoryGardner
+Connecticut,M,ChrisMurphyCT
+Connecticut,M,SenBlumenthal
+Delaware,M,SenatorCarper
+Delaware,M,ChrisCoons
+Florida,M,SenBillNelson
+Florida,M,marcorubio
+Georgia,M,SenDavidPerdue
+Georgia,M,SenatorIsakson
+Hawaii,M,brianschatz
+Hawaii,F,maziehirono
+Idaho,M,MikeCrapo
+Idaho,M,SenatorRisch
+Illinois,F,SenDuckworth
+Illinois,M,SenatorDurbin
+Indiana,M,SenDonnelly
+Indiana,M,SenToddYoung
+Iowa,M,ChuckGrassley
+Iowa,F,joniernst
+Kansas,M,SenPatRoberts
+Kansas,M,JerryMoran
+Kentucky,M,SenateMajLdr
+Kentucky,M,RandPaul
+Louisiana,M,BillCassidy
+Louisiana,M,SenJohnKennedy
+Maine,M,SenAngusKing
+Maine,F,SenatorCollins
+Maryland,M,ChrisVanHollen
+Maryland,M,SenatorCardin
+Massachusetts,M,senmarkey
+Massachusetts,F,SenWarren
+Michigan,M,SenGaryPeters
+Michigan,F,SenStabenow
+Minnesota,F,amyklobuchar
+Minnesota,F,SenTinaSmith
+Mississippi,M,SenThadCochran
+Mississippi,M,SenatorWicker
+Missouri,F,clairecmc
+Missouri,M,RoyBlunt
+Montana,M,SteveDaines
+Montana,M,SenatorTester
+Nebraska,F,SenatorFischer
+Nebraska,M,BenSasse
+Nevada,F,SenCortezMasto
+Nevada,M,SenDeanHeller
+New Hampshire,F,SenatorShaheen
+New Hampshire,F,SenatorHassan
+New Jersey,M,CoryBooker
+New Jersey,M,SenatorMenendez
+New Mexico,M,MartinHeinrich
+New Mexico,M,SenatorTomUdall
+New York,M,chuckschumer
+New York,F,SenGillibrand
+North Carolina,M,SenatorBurr
+North Carolina,M,SenThomTillis
+North Dakota,F,SenatorHeitkamp
+North Dakota,M,SenJohnHoeven
+Ohio,M,SenSherrodBrown,65,D
+Ohio,M,SenRobPortman,62,R
+Oklahoma,M,jiminhofe,83,R
+Oklahoma,M,SenatorLankford,50,R
+Oregon,M,RonWyden,68,D
+Oregon,M,SenJeffMerkley,61,D
+Pennsylvania,M,SenBobCasey,57,D
+Pennsylvania,M,SenToomey,56,R
+Rhode Island,M,SenJackReed,68,D
+Rhode Island,M,SenWhitehouse,62,D
+South Carolina,M,GrahamBlog,62,R
+South Carolina,M,SenatorTimScott,52,R
+South Dakota,M,SenatorRounds,63,R
+South Dakota,M,SenJohnThune,57,R
+Tennessee,M,SenAlexander,77,R
+Tennessee,M,BobCorker,65,R
+Texas,M,JohnCornyn,66,R
+Texas,M,SenTedCruz,47,R
+Utah,M,SenOrrinHatch,84,R
+Utah,M,SenMikeLee,46,R
+Vermont,M,SenatorLeahy,78,D
+Vermont,M,SenatorSanders,76,D
+Virginia,M,timkaine,60,D
+Virginia,M,MarkWarner,63,D
+Washington,F,PattyMurray,67,D
+Washington,F,SenatorCantwell,59,D
+West Virginia,F,SenCapito,64,R
+West Virginia,M,Sen_JoeManchin,70,D
+Wisconsin,F,SenatorBaldwin,56,D
+Wisconsin,M,SenRonJohnson,63,R
+Wyoming,M,SenatorEnzi,74,R
+Wyoming,M,SenJohnBarrasso,65,R
