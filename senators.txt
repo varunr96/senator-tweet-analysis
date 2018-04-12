@@ -86,7 +86,7 @@ SenTedCruz
 SenOrrinHatch
 SenMikeLee
 SenatorLeahy
-SenatorSanders
+SenSanders
 timkaine
 MarkWarner
 PattyMurray
