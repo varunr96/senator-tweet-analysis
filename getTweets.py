@@ -1,6 +1,8 @@
 import tweepy
 from tweepy import OAuthHandler
 import json
+import re
+
 
 
 auth = OAuthHandler(consumer_key, consumer_secret)
@@ -19,11 +21,13 @@ for line in f:
 
 f.close()
 
-f = open('tweets.json', 'w')
+
 all_tweets = dict.fromkeys(senators, [])
 all_num_tweets = {}
 num_tweets = 0
 
+for senator in senators:
+	all_tweets[senator] = []
 
 for senator in senators:
 	page = 1
@@ -35,19 +39,27 @@ for senator in senators:
 			for status in statuses:
 				tweet = {}
 				tweet['date'] = '{:%B %d, %Y}'.format(status.created_at)
-				tweet['text'] = status.full_text
+				clean_text = re.sub(r"http\S+", "", status.full_text)
+				clean_text = clean_text.encode('ascii', 'ignore').decode("utf-8")
+				clean_text = clean_text.replace('\"', '')
+				clean_text = clean_text.replace('\n', ' ')
+				tweet['text'] = clean_text
 				all_tweets[senator].append(tweet)
 				num_tweets += 1
 		else:
 			print('{}: scrapped {} tweets!'.format(senator, num_tweets))
-
 			break
 		page += 1
 	json_data = json.dumps(all_tweets, indent=4)
+	f = open('tweets.json', 'w')
 	f.write(json_data)
 	f.close()
 	exit(1)
 
+json_data = json.dumps(all_tweets, indent=4)
+f = open('tweets.json', 'w')
+f.write(json_data)
+f.close()
 
 f = open('num_tweets.txt', 'w')
 for senator in senators:
