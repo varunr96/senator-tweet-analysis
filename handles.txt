@@ -1,70 +1,70 @@
-Alabama,M,SenShelby
-Alaska,F,lisamurkowski
-Alaska,M,SenDanSullivan
-Arizona,M,SenJohnMcCain
-Arizona,M,JeffFlake
-Arkansa,M,SenTomCotton
-Arkansas,M,JohnBoozman
-California,F,SenFeinstein
-California,F,SenKamalaHarris
-Colorado,M,SenBennetCO
-Colorado,M,SenCoryGardner
-Connecticut,M,ChrisMurphyCT
-Connecticut,M,SenBlumenthal
-Delaware,M,SenatorCarper
-Delaware,M,ChrisCoons
-Florida,M,SenBillNelson
-Florida,M,marcorubio
-Georgia,M,SenDavidPerdue
-Georgia,M,SenatorIsakson
-Hawaii,M,brianschatz
-Hawaii,F,maziehirono
-Idaho,M,MikeCrapo
-Idaho,M,SenatorRisch
-Illinois,F,SenDuckworth
-Illinois,M,SenatorDurbin
-Indiana,M,SenDonnelly
-Indiana,M,SenToddYoung
-Iowa,M,ChuckGrassley
-Iowa,F,joniernst
-Kansas,M,SenPatRoberts
-Kansas,M,JerryMoran
-Kentucky,M,SenateMajLdr
-Kentucky,M,RandPaul
-Louisiana,M,BillCassidy
-Louisiana,M,SenJohnKennedy
-Maine,M,SenAngusKing
-Maine,F,SenatorCollins
-Maryland,M,ChrisVanHollen
-Maryland,M,SenatorCardin
-Massachusetts,M,senmarkey
-Massachusetts,F,SenWarren
-Michigan,M,SenGaryPeters
-Michigan,F,SenStabenow
-Minnesota,F,amyklobuchar
-Minnesota,F,SenTinaSmith
-Mississippi,M,SenThadCochran
-Mississippi,M,SenatorWicker
-Missouri,F,clairecmc
-Missouri,M,RoyBlunt
-Montana,M,SteveDaines
-Montana,M,SenatorTester
-Nebraska,F,SenatorFischer
-Nebraska,M,BenSasse
-Nevada,F,SenCortezMasto
-Nevada,M,SenDeanHeller
-New Hampshire,F,SenatorShaheen
-New Hampshire,F,SenatorHassan
-New Jersey,M,CoryBooker
-New Jersey,M,SenatorMenendez
-New Mexico,M,MartinHeinrich
-New Mexico,M,SenatorTomUdall
-New York,M,chuckschumer
-New York,F,SenGillibrand
-North Carolina,M,SenatorBurr
-North Carolina,M,SenThomTillis
-North Dakota,F,SenatorHeitkamp
-North Dakota,M,SenJohnHoeven
+Alabama,M,SenShelby,83,R
+Alaska,F,lisamurkowski,60,R
+Alaska,M,SenDanSullivan,53,R
+Arizona,M,SenJohnMcCain,81,R
+Arizona,M,JeffFlake,55,R
+Arkansa,M,SenTomCotton,40,R
+Arkansas,M,JohnBoozman,67,R
+California,F,SenFeinstein,84,D
+California,F,SenKamalaHarris,53,D
+Colorado,M,SenBennetCO,53,D
+Colorado,M,SenCoryGardner,43,R
+Connecticut,M,ChrisMurphyCT,44,D
+Connecticut,M,SenBlumenthal,72,D
+Delaware,M,SenatorCarper,71,D
+Delaware,M,ChrisCoons,54,D
+Florida,M,SenBillNelson,75,D
+Florida,M,marcorubio,46,R
+Georgia,M,SenDavidPerdue,68,R
+Georgia,M,SenatorIsakson,73,R
+Hawaii,M,brianschatz,45,D
+Hawaii,F,maziehirono,70,D
+Idaho,M,MikeCrapo,66,R
+Idaho,M,SenatorRisch,74,R
+Illinois,F,SenDuckworth,50,D
+Illinois,M,SenatorDurbin,73,D
+Indiana,M,SenDonnelly,62,D
+Indiana,M,SenToddYoung,45,R
+Iowa,M,ChuckGrassley,84,R
+Iowa,F,joniernst,47,R
+Kansas,M,SenPatRoberts,81,R
+Kansas,M,JerryMoran,63,R
+Kentucky,M,SenateMajLdr,57,R
+Kentucky,M,RandPaul,55,R
+Louisiana,M,BillCassidy,60,R
+Louisiana,M,SenJohnKennedy,66,R
+Maine,M,SenAngusKing,74,D
+Maine,F,SenatorCollins,65,R
+Maryland,M,ChrisVanHollen,59,D
+Maryland,M,SenatorCardin,74,D
+Massachusetts,M,senmarkey,71,D
+Massachusetts,F,SenWarren,68,D
+Michigan,M,SenGaryPeters,59,D
+Michigan,F,SenStabenow,67,D
+Minnesota,F,amyklobuchar,57,D
+Minnesota,F,SenTinaSmith,60,D
+Mississippi,M,SenThadCochran,80,R
+Mississippi,M,SenatorWicker,66,R
+Missouri,F,clairecmc,64,D
+Missouri,M,RoyBlunt,68,R
+Montana,M,SteveDaines,55,R
+Montana,M,SenatorTester,61,D
+Nebraska,F,SenatorFischer,67,R
+Nebraska,M,BenSasse,46,R
+Nevada,F,SenCortezMasto,54,D
+Nevada,M,SenDeanHeller,57,R
+New Hampshire,F,SenatorShaheen,71,D
+New Hampshire,F,SenatorHassan,60,D
+New Jersey,M,CoryBooker,48,D
+New Jersey,M,SenatorMenendez,64,D
+New Mexico,M,MartinHeinrich,46,D
+New Mexico,M,SenatorTomUdall,69,D
+New York,M,chuckschumer,67,D
+New York,F,SenGillibrand,51,D
+North Carolina,M,SenatorBurr,62,R
+North Carolina,M,SenThomTillis,57,R
+North Dakota,F,SenatorHeitkamp,62,D
+North Dakota,M,SenJohnHoeven,61,R
 Ohio,M,SenSherrodBrown,65,D
 Ohio,M,SenRobPortman,62,R
 Oklahoma,M,jiminhofe,83,R
