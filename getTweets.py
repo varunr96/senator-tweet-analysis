@@ -1,26 +1,24 @@
 import tweepy
 from tweepy import OAuthHandler
-import json
-import re
+import json, re
 
-
+consumer_key = 'jHtpxFPXLdFYjo1v4GUQQBFA4'
+consumer_secret = 'mxYbUQMq0UtdIMpDcqX9cuCcZqmi2wHU4CXb3bBXl5RGl9w8aT'
+access_token = '167688459-pMTFKjvnY3ter9y8PP5qAai5Dj1JuFNPE4s08C7q'
+access_secret = 'Ipjtt9MpjlJCIbxvIStUkQamaS6XMS84DCEdEkcnXSro3'
 
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
 
-api = tweepy.API(auth)
+api = tweepy.API(auth, wait_on_rate_limit=True)
 
 senators = set()
-
 filename = 'senators.txt'
-
 f = open(filename, 'r')
-
 for line in f:
 	senators.add(line.rstrip('\n'))
 
 f.close()
-
 
 all_tweets = dict.fromkeys(senators, [])
 all_num_tweets = {}
@@ -48,13 +46,9 @@ for senator in senators:
 				num_tweets += 1
 		else:
 			print('{}: scrapped {} tweets!'.format(senator, num_tweets))
+			all_num_tweets[senator] = num_tweets
 			break
 		page += 1
-	json_data = json.dumps(all_tweets, indent=4)
-	f = open('tweets.json', 'w')
-	f.write(json_data)
-	f.close()
-	exit(1)
 
 json_data = json.dumps(all_tweets, indent=4)
 f = open('tweets.json', 'w')
