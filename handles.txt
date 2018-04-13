@@ -1,5 +1,4 @@
 Alabama,M,SenShelby
-Alabama,M,GDouglasJones
 Alaska,F,lisamurkowski
 Alaska,M,SenDanSullivan
 Arizona,M,SenJohnMcCain
