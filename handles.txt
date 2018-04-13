@@ -53,18 +53,18 @@ Nebraska,F,SenatorFischer,67,R
 Nebraska,M,BenSasse,46,R
 Nevada,F,SenCortezMasto,54,D
 Nevada,M,SenDeanHeller,57,R
-New Hampshire,F,SenatorShaheen,71,D
-New Hampshire,F,SenatorHassan,60,D
-New Jersey,M,CoryBooker,48,D
-New Jersey,M,SenatorMenendez,64,D
-New Mexico,M,MartinHeinrich,46,D
-New Mexico,M,SenatorTomUdall,69,D
-New York,M,chuckschumer,67,D
-New York,F,SenGillibrand,51,D
-North Carolina,M,SenatorBurr,62,R
-North Carolina,M,SenThomTillis,57,R
-North Dakota,F,SenatorHeitkamp,62,D
-North Dakota,M,SenJohnHoeven,61,R
+NH,F,SenatorShaheen,71,D
+NH,F,SenatorHassan,60,D
+NJ,M,CoryBooker,48,D
+NJ,M,SenatorMenendez,64,D
+NM,M,MartinHeinrich,46,D
+NM,M,SenatorTomUdall,69,D
+NY,M,SenSchumer,67,D
+NY,F,SenGillibrand,51,D
+NC,M,SenatorBurr,62,R
+NC,M,SenThomTillis,57,R
+ND,F,SenatorHeitkamp,62,D
+ND,M,SenJohnHoeven,61,R
 Ohio,M,SenSherrodBrown,65,D
 Ohio,M,SenRobPortman,62,R
 Oklahoma,M,jiminhofe,83,R
@@ -73,12 +73,12 @@ Oregon,M,RonWyden,68,D
 Oregon,M,SenJeffMerkley,61,D
 Pennsylvania,M,SenBobCasey,57,D
 Pennsylvania,M,SenToomey,56,R
-Rhode Island,M,SenJackReed,68,D
-Rhode Island,M,SenWhitehouse,62,D
-South Carolina,M,GrahamBlog,62,R
-South Carolina,M,SenatorTimScott,52,R
-South Dakota,M,SenatorRounds,63,R
-South Dakota,M,SenJohnThune,57,R
+RI,M,SenJackReed,68,D
+RI,M,SenWhitehouse,62,D
+SC,M,GrahamBlog,62,R
+SC,M,SenatorTimScott,52,R
+SD,M,SenatorRounds,63,R
+SD,M,SenJohnThune,57,R
 Tennessee,M,SenAlexander,77,R
 Tennessee,M,BobCorker,65,R
 Texas,M,JohnCornyn,66,R
@@ -86,13 +86,13 @@ Texas,M,SenTedCruz,47,R
 Utah,M,SenOrrinHatch,84,R
 Utah,M,SenMikeLee,46,R
 Vermont,M,SenatorLeahy,78,D
-Vermont,M,SenatorSanders,76,D
+Vermont,M,SenSanders,76,D
 Virginia,M,timkaine,60,D
 Virginia,M,MarkWarner,63,D
 Washington,F,PattyMurray,67,D
 Washington,F,SenatorCantwell,59,D
-West Virginia,F,SenCapito,64,R
-West Virginia,M,Sen_JoeManchin,70,D
+WV,F,SenCapito,64,R
+WV,M,Sen_JoeManchin,70,D
 Wisconsin,F,SenatorBaldwin,56,D
 Wisconsin,M,SenRonJohnson,63,R
 Wyoming,M,SenatorEnzi,74,R
