@@ -1,11 +1,11 @@
 import sentiment
 
+print ("hell0")
 senator_info = {}
 senator_handles_file = open("handles.txt", "r").read().split()
 for line in senator_handles_file:
     state, gender, username, age, party = line.split(',')
-    senator_info[username] = Senator(username, party, state, gender, age)
-    print(state)
+    senator_info[username] = sentiment.Senator(username, party, state, gender, age)
 
 sentimentClass = {}
 filename = "gun_guns_control.txt"
