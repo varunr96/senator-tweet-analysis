@@ -10,7 +10,6 @@ def autolabel(rects):
                 '%d' % float(height),
                 ha='center', va='bottom')
 
-
 senator_info = {}
 senator_handles_file = open("handles.txt", "r").read().split()
 for line in senator_handles_file:
