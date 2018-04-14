@@ -61,7 +61,7 @@ for line in senator_handles_file:
 
 senator_topic_sentiments = {}
 
-topics = ["guns, gun", "control"]
+topics = ["privacy"]
 for senator in tweets:
     senator_tweets = tweets[senator]
     senator_info[senator].total_tweets = len(tweets[senator])
@@ -76,6 +76,7 @@ for senator in tweets:
         elif sentiment == 'neutral':
             senator_info[senator].neutral_count += 1
 
+filename = ""
 for topic in topics:
     filename = filename + "_" + topic
 filename = filename + ".txt"
