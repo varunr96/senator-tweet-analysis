@@ -76,6 +76,11 @@ for senator in tweets:
         elif sentiment == 'neutral':
             senator_info[senator].neutral_count += 1
 
+for topic in topics:
+    filename = filename + "_" + topic
+filename = filename + ".txt"
+f = open(filename, 'w')
+
 topicList = []
 for senator in senator_topic_sentiments:
     largest = -1
@@ -92,61 +97,62 @@ for senator in senator_topic_sentiments:
     topicList.append((senator, type))
 
 for tuple in topicList:
-    print(tuple)
+    f.write(tuple[0] + "," + tuple[1] + "\n")
+f.close()
 
-malePosCount = 0; femalePosCount = 0
-maleNeuCount = 0; femaleNeuCount = 0
-maleNegCount = 0; femaleNegCount = 0
-for tuple in topicList:
-    if senator_info[tuple[0]].gender == 'M' and tuple[1] == "pos":
-        malePosCount += 1
-    elif senator_info[tuple[0]].gender == 'F' and tuple[1] == "pos":
-        femalePosCount += 1
+# malePosCount = 0; femalePosCount = 0
+# maleNeuCount = 0; femaleNeuCount = 0
+# maleNegCount = 0; femaleNegCount = 0
+# for tuple in topicList:
+#     if senator_info[tuple[0]].gender == 'M' and tuple[1] == "pos":
+#         malePosCount += 1
+#     elif senator_info[tuple[0]].gender == 'F' and tuple[1] == "pos":
+#         femalePosCount += 1
 
-    if senator_info[tuple[0]].gender == 'M' and tuple[1] == "neg":
-        maleNegCount += 1
-    elif senator_info[tuple[0]].gender == 'F' and tuple[1] == "neg":
-        femaleNegCount += 1
+#     if senator_info[tuple[0]].gender == 'M' and tuple[1] == "neg":
+#         maleNegCount += 1
+#     elif senator_info[tuple[0]].gender == 'F' and tuple[1] == "neg":
+#         femaleNegCount += 1
 
-    if senator_info[tuple[0]].gender == 'M' and tuple[1] == "neu":
-        maleNeuCount += 1
-    elif senator_info[tuple[0]].gender == 'F' and tuple[1] == "neu":
-        femaleNeuCount += 1
+#     if senator_info[tuple[0]].gender == 'M' and tuple[1] == "neu":
+#         maleNeuCount += 1
+#     elif senator_info[tuple[0]].gender == 'F' and tuple[1] == "neu":
+#         femaleNeuCount += 1
 
-demPosCount = 0; repPosCount = 0
-demNeuCount = 0; repNeuCount = 0
-demNegCount = 0; repNegCount = 0
-for tuple in topicList:
-    if senator_info[tuple[0]].party == 'D' and tuple[1] == "pos":
-        demPosCount += 1
-    elif senator_info[tuple[0]].party == 'R' and tuple[1] == "pos":
-        repPosCount += 1
+# demPosCount = 0; repPosCount = 0
+# demNeuCount = 0; repNeuCount = 0
+# demNegCount = 0; repNegCount = 0
+# for tuple in topicList:
+#     if senator_info[tuple[0]].party == 'D' and tuple[1] == "pos":
+#         demPosCount += 1
+#     elif senator_info[tuple[0]].party == 'R' and tuple[1] == "pos":
+#         repPosCount += 1
 
-    if senator_info[tuple[0]].party == 'D' and tuple[1] == "neg":
-        demNegCount += 1
-    elif senator_info[tuple[0]].party == 'R' and tuple[1] == "neg":
-        repNegCount += 1
+#     if senator_info[tuple[0]].party == 'D' and tuple[1] == "neg":
+#         demNegCount += 1
+#     elif senator_info[tuple[0]].party == 'R' and tuple[1] == "neg":
+#         repNegCount += 1
 
-    if senator_info[tuple[0]].party == 'D' and tuple[1] == "neu":
-        demNeuCount += 1
-    elif senator_info[tuple[0]].party == 'R' and tuple[1] == "neu":
-        repNeuCount += 1
+#     if senator_info[tuple[0]].party == 'D' and tuple[1] == "neu":
+#         demNeuCount += 1
+#     elif senator_info[tuple[0]].party == 'R' and tuple[1] == "neu":
+#         repNeuCount += 1
 
-youngPosCount = 0; oldPosCount = 0
-youngNeuCount = 0; oldNeuCount = 0
-youngNegCount = 0; oldNegCount = 0
-for tuple in topicList:
-    if senator_info[tuple[0]].age >= 40 and senator_info[tuple[0]].age <= 62 and tuple[1] == "pos":
-        youngPosCount += 1
-    elif senator_info[tuple[0]].age >= 63 and tuple[1] == "pos":
-        oldPosCount += 1
+# youngPosCount = 0; oldPosCount = 0
+# youngNeuCount = 0; oldNeuCount = 0
+# youngNegCount = 0; oldNegCount = 0
+# for tuple in topicList:
+#     if senator_info[tuple[0]].age >= 40 and senator_info[tuple[0]].age <= 62 and tuple[1] == "pos":
+#         youngPosCount += 1
+#     elif senator_info[tuple[0]].age >= 63 and tuple[1] == "pos":
+#         oldPosCount += 1
 
-    if senator_info[tuple[0]].age >= 40 and senator_info[tuple[0]].age <= 62 and tuple[1] == "neg":
-        youngNegCount += 1
-    elif senator_info[tuple[0]].age >= 63 and tuple[1] == "neg":
-        oldNegCount += 1
+#     if senator_info[tuple[0]].age >= 40 and senator_info[tuple[0]].age <= 62 and tuple[1] == "neg":
+#         youngNegCount += 1
+#     elif senator_info[tuple[0]].age >= 63 and tuple[1] == "neg":
+#         oldNegCount += 1
 
-    if senator_info[tuple[0]].age >= 40 and senator_info[tuple[0]].age <= 62 and tuple[1] == "neu":
-        youngNeuCount += 1
-    elif senator_info[tuple[0]].age >= 63 and tuple[1] == "neu":
-        oldNeuCount += 1
+#     if senator_info[tuple[0]].age >= 40 and senator_info[tuple[0]].age <= 62 and tuple[1] == "neu":
+#         youngNeuCount += 1
+#     elif senator_info[tuple[0]].age >= 63 and tuple[1] == "neu":
+#         oldNeuCount += 1
