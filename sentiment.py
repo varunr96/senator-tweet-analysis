@@ -35,17 +35,13 @@ class Senator:
         self.neutral_count = 0
 
 tweets_file = open("tweets.json", "r")
-tweets = json.loads(tweets_file.read()) # key: senator username         value: list of {'date', 'text'}
+tweets = json.loads(tweets_file.read()) # key: senator username value: list of {'date', 'text'}
 
 senator_info = {}
 senator_handles_file = open("handles.txt", "r").read().split()
 for line in senator_handles_file:
     state, gender, username, age, party = line.split(',')
     senator_info[username] = Senator(username, party, state, gender, age)
-
-#for key in senator_info:
-    #print "{}: {} {} {} {}".format(key, senator_info[key].gender, senator_info[key].age, senator_info[key].party, senator_info[key].state)
-#exit(1)
 
 senator_topic_sentiments = {}
 
