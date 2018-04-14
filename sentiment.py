@@ -63,7 +63,7 @@ def main():
 
     senator_topic_sentiments = {}
 
-    topics = ["privacy"]
+    topics = ["gun", "guns", "control"]
     for senator in tweets:
         senator_tweets = tweets[senator]
         senator_info[senator].total_tweets = len(tweets[senator])

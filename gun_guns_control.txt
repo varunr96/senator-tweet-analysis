@@ -1,7 +1,7 @@
 SenPatRoberts,neu
 JeffFlake,pos
 jiminhofe,neu
-SenTomCotton,pos
+SenTomCotton,neu
 SenMikeLee,neu
 senmarkey,pos
 SenatorShaheen,pos
@@ -18,10 +18,10 @@ SenGaryPeters,pos
 SenatorRounds,neu
 clairecmc,neg
 SenatorHeitkamp,pos
-RandPaul,pos
+RandPaul,neu
 lisamurkowski,neu
-SenatorRisch,neu
-SenDeanHeller,neg
+SenatorRisch,pos
+SenDeanHeller,neu
 SenatorTimScott,neg
 SenJohnHoeven,neu
 MarkWarner,pos
@@ -38,7 +38,7 @@ SenatorDurbin,pos
 SenDuckworth,pos
 SenJohnThune,pos
 marcorubio,pos
-SenToddYoung,neu
+SenToddYoung,pos
 SenThadCochran,neu
 SenatorFischer,pos
 SenatorBaldwin,pos
@@ -57,8 +57,8 @@ SenTinaSmith,pos
 SteveDaines,neu
 brianschatz,neu
 ChuckGrassley,neu
-SenRobPortman,pos
-SenOrrinHatch,neu
+SenRobPortman,neu
+SenOrrinHatch,pos
 SenTedCruz,pos
 MartinHeinrich,pos
 SenBobCasey,pos
@@ -79,7 +79,7 @@ SenCoryGardner,pos
 ChrisMurphyCT,pos
 SenatorMenendez,pos
 SenatorCardin,pos
-SenCapito,neu
+SenCapito,pos
 SenRonJohnson,pos
 SenFeinstein,pos
 PattyMurray,pos
@@ -88,7 +88,7 @@ SenatorCollins,pos
 RonWyden,pos
 SenShelby,neu
 SenThomTillis,neu
-MikeCrapo,neu
+MikeCrapo,pos
 SenKamalaHarris,pos
 SenDonnelly,pos
 SenatorCantwell,pos
