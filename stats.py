@@ -1,4 +1,15 @@
 import sentiment, sys
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Attach a text label above each bar displaying its height
+def autolabel(rects):
+    for rect in rects:
+        height = float(rect.get_height())
+        ax.text(float(rect.get_x() + rect.get_width()/2.), 1.0*height,
+                '%d' % float(height),
+                ha='center', va='bottom')
+
 
 senator_info = {}
 senator_handles_file = open("handles.txt", "r").read().split()
@@ -69,3 +80,28 @@ for senator in sentimentClass:
 			oldNegCount += 1
 		else:
 			oldNeuCount += 1
+
+maleCount = float(malePosCount + maleNeuCount + maleNegCount)
+femaleCount = float(femalePosCount + femaleNeuCount + femaleNegCount)
+
+N = 3
+maleValues = (malePosCount*100/maleCount, maleNeuCount*100/maleCount, maleNegCount*100/maleCount)
+ind = np.arange(N)
+width = 0.35
+fig, ax = plt.subplots()
+rects1 = ax.bar(ind, maleValues, width, color='r')
+
+femaleValues = (femalePosCount*100/femaleCount, femaleNeuCount*100/femaleCount, femaleNegCount*100/femaleCount)
+rects2 = ax.bar(ind + width, femaleValues, width, color='b')
+
+ax.set_ylabel("Senator Sentiment Percentage")
+ax.set_xlabel("Gun/Guns/Control Topic")
+ax.set_title("Percentage of Senator Sentiments by Gender")
+ax.set_xticks(ind + width / 2)
+ax.set_xticklabels(('POS', 'NEU', 'NEG'))
+
+ax.legend((rects1[0], rects2[0]), ('Male', 'Female'))
+autolabel(rects1)
+autolabel(rects2)
+
+plt.show()
