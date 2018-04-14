@@ -34,7 +34,7 @@ class Senator:
         self.negative_count = 0
         self.neutral_count = 0
 
-def TopicSentiment(topics, senator, senator_tweet, senator_topic_sentiments):
+def TopicSentiment(sentiment, topics, senator, senator_tweet, senator_topic_sentiments):
     proceed = False
     for topic in topics:
         if topic.lower() in senator_tweet['text'].lower():
@@ -70,7 +70,7 @@ def main():
         for senator_tweet in senator_tweets:
             sentiment = get_tweet_sentiment(senator_tweet['text'])
 
-            TopicSentiment(topics, senator, senator_tweet, senator_topic_sentiments)
+            TopicSentiment(sentiment, topics, senator, senator_tweet, senator_topic_sentiments)
             if sentiment == 'positive':
                 senator_info[senator].positive_count += 1
             elif sentiment == 'negative':
