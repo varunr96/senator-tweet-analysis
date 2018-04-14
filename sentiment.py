@@ -28,11 +28,27 @@ class Senator:
         self.party = party
         self.state = state
         self.gender = gender
-        self.age = age
+        self.age = int (age)
         self.total_tweets = 0 # for normalization
         self.positive_count = 0
         self.negative_count = 0
         self.neutral_count = 0
+
+def TopicSentiment(topics, senator, senator_tweet, senator_topic_sentiments):
+    proceed = False
+    for topic in topics:
+        if topic in senator_tweet['text']:
+            proceed = True
+            break
+    if proceed:
+        if senator not in senator_topic_sentiments:
+            senator_topic_sentiments[senator] = TopicTweet(senator)
+        if sentiment == 'positive':
+            senator_topic_sentiments[senator].positive_count += 1
+        elif sentiment == 'negative':
+            senator_topic_sentiments[senator].negative_count += 1
+        elif sentiment == 'neutral':
+            senator_topic_sentiments[senator].neutral_count += 1
 
 tweets_file = open("tweets.json", "r")
 tweets = json.loads(tweets_file.read()) # key: senator username value: list of {'date', 'text'}
@@ -45,25 +61,20 @@ for line in senator_handles_file:
 
 senator_topic_sentiments = {}
 
+topics = ["guns, gun", "control"]
 for senator in tweets:
     senator_tweets = tweets[senator]
     senator_info[senator].total_tweets = len(tweets[senator])
     for senator_tweet in senator_tweets:
         sentiment = get_tweet_sentiment(senator_tweet['text'])
-        if senator not in senator_topic_sentiments and "gun" in senator_tweet['text'] or "guns" in senator_tweet['text']: #change topic here
-            senator_topic_sentiments[senator] = TopicTweet(senator)
+
+        TopicSentiment(topics, senator, senator_tweet, senator_topic_sentiments)
         if sentiment == 'positive':
             senator_info[senator].positive_count += 1
-            if senator in senator_topic_sentiments:
-                senator_topic_sentiments[senator].positive_count += 1
         elif sentiment == 'negative':
             senator_info[senator].negative_count += 1
-            if senator in senator_topic_sentiments:
-                senator_topic_sentiments[senator].negative_count += 1
         elif sentiment == 'neutral':
             senator_info[senator].neutral_count += 1
-            if senator in senator_topic_sentiments:
-                senator_topic_sentiments[senator].neutral_count += 1
 
 topicList = []
 for senator in senator_topic_sentiments:
