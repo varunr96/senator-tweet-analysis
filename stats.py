@@ -1,6 +1,5 @@
 import sentiment
 
-print ("hell0")
 senator_info = {}
 senator_handles_file = open("handles.txt", "r").read().split()
 for line in senator_handles_file:
@@ -17,19 +16,18 @@ for line in f:
 malePosCount = 0; femalePosCount = 0
 maleNeuCount = 0; femaleNeuCount = 0
 maleNegCount = 0; femaleNegCount = 0
-print("parsed")
 for senator in sentimentClass: 
-	if senator.gender == 'M':
-		if senator.sentiment == "pos":
+	if senator_info[senator].gender == 'M':
+		if sentimentClass[senator] == "pos":
 			malePosCount += 1
-		elif senator.sentiment == "neg":
+		elif sentimentClass[senator] == "neg":
 			maleNegCount += 1
 		else:
 			maleNeuCount += 1
-	elif senator.gender == 'F':
-		if senator.sentiment == "pos":
+	elif senator_info[senator].gender == 'F':
+		if sentimentClass[senator] == "pos":
 			femalePosCount += 1
-		elif senator.sentiment == "neg":
+		elif sentimentClass[senator] == "neg":
 			femaleNegCount += 1
 		else:
 			femaleNeuCount += 1
@@ -38,17 +36,17 @@ demPosCount = 0; repPosCount = 0
 demNeuCount = 0; repNeuCount = 0
 demNegCount = 0; repNegCount = 0
 for senator in sentimentClass: 
-	if senator.party == 'D':
-		if senator.sentiment == "pos":
-			dePosCount += 1
-		elif senator.sentiment == "neg":
-			deNegCount += 1
+	if senator_info[senator].party == 'D':
+		if sentimentClass[senator] == "pos":
+			demPosCount += 1
+		elif sentimentClass[senator] == "neg":
+			demNegCount += 1
 		else:
-			deNeuCount += 1
-	elif senator.party == 'R':
-		if senator.sentiment == "pos":
+			demNeuCount += 1
+	elif senator_info[senator].party == 'R':
+		if sentimentClass[senator] == "pos":
 			repPosCount += 1
-		elif senator.sentiment == "neg":
+		elif sentimentClass[senator] == "neg":
 			repNegCount += 1
 		else:
 			repNeuCount += 1
@@ -57,17 +55,17 @@ youngPosCount = 0; oldPosCount = 0
 youngNeuCount = 0; oldNeuCount = 0
 youngNegCount = 0; oldNegCount = 0
 for senator in sentimentClass: 
-	if senator.age >= 40 and senator.age <= 62:
-		if senator.sentiment == "pos":
+	if senator_info[senator].age >= 40 and senator_info[senator].age <= 62:
+		if sentimentClass[senator] == "pos":
 			youngPosCount += 1
-		elif senator.sentiment == "neg":
+		elif sentimentClass[senator] == "neg":
 			youngNegCount += 1
 		else:
 			youngNeuCount += 1
-	elif senator.gender > 62:
-		if senator.sentiment == "pos":
+	elif senator_info[senator].age > 62:
+		if sentimentClass[senator] == "pos":
 			oldPosCount += 1
-		elif senator.sentiment == "neg":
+		elif sentimentClass[senator] == "neg":
 			oldNegCount += 1
 		else:
 			oldNeuCount += 1
