@@ -37,7 +37,7 @@ class Senator:
 def TopicSentiment(topics, senator, senator_tweet, senator_topic_sentiments):
     proceed = False
     for topic in topics:
-        if topic in senator_tweet['text']:
+        if topic.lower() in senator_tweet['text'].lower():
             proceed = True
             break
     if proceed:
@@ -105,5 +105,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    

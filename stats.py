@@ -1,4 +1,4 @@
-import sentiment
+import sentiment, sys
 
 senator_info = {}
 senator_handles_file = open("handles.txt", "r").read().split()
@@ -7,7 +7,7 @@ for line in senator_handles_file:
     senator_info[username] = sentiment.Senator(username, party, state, gender, age)
 
 sentimentClass = {}
-filename = "gun_guns_control.txt"
+filename = sys.argv[1]
 f = open(filename, 'r').read().split()
 for line in f:
 	senator, sentiment = line.split(',')
