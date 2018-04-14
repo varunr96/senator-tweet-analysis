@@ -79,7 +79,7 @@ for senator in tweets:
 filename = ""
 for topic in topics:
     filename = filename + "_" + topic
-filename = filename + ".txt"
+filename = filename[1:] + ".txt"
 f = open(filename, 'w')
 
 topicList = []
