@@ -83,14 +83,15 @@ for senator in sentimentClass:
 maleCount = float(malePosCount + maleNeuCount + maleNegCount)
 femaleCount = float(femalePosCount + femaleNeuCount + femaleNegCount)
 
+
+# code to graph. for eveyr topic we will have 3 bar graphs
 N = 3
-maleValues = (malePosCount*100/maleCount, maleNeuCount*100/maleCount, maleNegCount*100/maleCount)
-ind = np.arange(N)
 width = 0.35
+ind = np.arange(N)
+maleValues = (malePosCount*100/maleCount, maleNeuCount*100/maleCount, maleNegCount*100/maleCount)
+femaleValues = (femalePosCount*100/femaleCount, femaleNeuCount*100/femaleCount, femaleNegCount*100/femaleCount)
 fig, ax = plt.subplots()
 rects1 = ax.bar(ind, maleValues, width, color='r')
-
-femaleValues = (femalePosCount*100/femaleCount, femaleNeuCount*100/femaleCount, femaleNegCount*100/femaleCount)
 rects2 = ax.bar(ind + width, femaleValues, width, color='b')
 
 ax.set_ylabel("Senator Sentiment Percentage")
