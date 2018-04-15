@@ -31,7 +31,7 @@ def plot(list1, list2, category):
 	width = 0.35
 	ind = np.arange(N)
 	values_1 = (list1[0]*100/total1, list1[1]*100/total1, list1[2]*100/total1)
-	values_2 = (list2[0]*100/total2, list2[1]*100/total2, list1[2]*100/total2)
+	values_2 = (list2[0]*100/total2, list2[1]*100/total2, list2[2]*100/total2)
 	rects1 = ax.bar(ind, values_1, width, color='r')
 	rects2 = ax.bar(ind + width, values_2, width, color='b')
 
