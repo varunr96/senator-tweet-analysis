@@ -1,6 +1,7 @@
 import sentiment, sys
 import matplotlib.pyplot as plt
 import numpy as np
+import operator
 
 # Attach a text label above each bar displaying its height
 def autolabel(rects):
@@ -17,11 +18,43 @@ for line in senator_handles_file:
     senator_info[username] = sentiment.Senator(username, party, state, gender, age)
 
 sentimentClass = {}
+tf = {}
 filename = sys.argv[1]
 f = open(filename, 'r').read().split()
 for line in f:
-	senator, sentiment = line.split(',')
-	sentimentClass[senator] = sentiment
+	info = line.split(',')
+	senator = info[0]
+
+	tf[senator] = {}
+	sentimentClass[senator] = info[1]
+	info = info[2:]
+	i = 0
+	while i < len(info):
+		tf[senator][info[i]] = float(info[i+1])
+		i += 2
+
+male_tf = {}
+female_tf = {}
+for senator in sentimentClass: 
+	if senator_info[senator].gender == 'M':
+		for term, freq in tf[senator].items():
+			if term not in male_tf:
+				male_tf[term] = 0
+			male_tf[term] += freq
+	elif senator_info[senator].gender == 'F':
+		for term, freq in tf[senator].items():
+			if term not in female_tf:
+				female_tf[term] = 0
+			female_tf[term] += freq
+
+sorted_male_tf = sorted(male_tf.items(), key=operator.itemgetter(1), reverse=True)
+sorted_female_tf = sorted(female_tf.items(), key=operator.itemgetter(1), reverse=True)
+print("Male Top 20 Words:")
+for i in range(20):
+	print("#{}: {}".format(i, sorted_male_tf[i]))
+print("\n\nFemale Top 20 Words:")
+for i in range(20):
+	print("#{}: {}".format(i, sorted_female_tf[i]))
 
 malePosCount = 0; femalePosCount = 0
 maleNeuCount = 0; femaleNeuCount = 0

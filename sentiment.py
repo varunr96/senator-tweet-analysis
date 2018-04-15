@@ -1,5 +1,6 @@
 from textblob import TextBlob
 import json, re
+import preprocess
 
 def clean_tweet(tweet):
     return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split())
@@ -33,11 +34,12 @@ class Senator:
         self.positive_count = 0
         self.negative_count = 0
         self.neutral_count = 0
+        self.tf = {}
 
-def TopicSentiment(sentiment, topics, senator, senator_tweet, senator_topic_sentiments):
+def TopicSentiment(sentiment, topics, senator, senator_tweet_tokens, senator_topic_sentiments):
     proceed = False
     for topic in topics:
-        if topic.lower() in senator_tweet['text'].lower():
+        if topic.lower() in senator_tweet_tokens:
             proceed = True
             break
     if proceed:
@@ -63,27 +65,30 @@ def main():
 
     senator_topic_sentiments = {}
 
-    topics = ["gun", "guns", "control"]
+    topics = ["gun", "guns"]
+    count = 0
     for senator in tweets:
+        count += 1
+        print("senator # " + str(count) + ": " + senator)
         senator_tweets = tweets[senator]
         senator_info[senator].total_tweets = len(tweets[senator])
         for senator_tweet in senator_tweets:
+            tokens = preprocess.tokenizeText(senator_tweet['text'])
+            tokens = preprocess.removeStopwords(tokens)
+            for token in tokens:
+                if len(token) == 1:
+                    continue
+                if token not in senator_info[senator].tf:
+                    senator_info[senator].tf[token] = 0
+                senator_info[senator].tf[token] += 1
             sentiment = get_tweet_sentiment(senator_tweet['text'])
-
-            TopicSentiment(sentiment, topics, senator, senator_tweet, senator_topic_sentiments)
+            TopicSentiment(sentiment, topics, senator, tokens, senator_topic_sentiments)
             if sentiment == 'positive':
                 senator_info[senator].positive_count += 1
             elif sentiment == 'negative':
                 senator_info[senator].negative_count += 1
             elif sentiment == 'neutral':
                 senator_info[senator].neutral_count += 1
-
-    filename = ""
-    for topic in topics:
-        filename = filename + "_" + topic
-    filename = filename[1:] + ".txt"
-    f = open(filename, 'w')
-
     topicList = []
     for senator in senator_topic_sentiments:
         largest = -1
@@ -98,10 +103,26 @@ def main():
             largest = senator_topic_sentiments[senator].neutral_count
             type = "neu"
         topicList.append((senator, type))
+    for senator in senator_info:
+        total = 0.0
+        for term in senator_info[senator].tf:
+            total += senator_info[senator].tf[term]
+        for term in senator_info[senator].tf:
+            senator_info[senator].tf[term] /= float(total)
 
+    filename = ""
+    for topic in topics:
+        filename = filename + "_" + topic
+    filename = filename[1:] + ".txt"
+    f = open(filename, 'w')
     for tuple in topicList:
-        f.write(tuple[0] + "," + tuple[1] + "\n")
+        f.write(tuple[0] + "," + tuple[1])
+        for term, tf in senator_info[tuple[0]].tf.items():
+            f.write("," + term + "," + str(tf))
+        f.write("\n")
     f.close()
+
+
 
 if __name__ == "__main__":
     main()
