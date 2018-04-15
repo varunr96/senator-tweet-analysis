@@ -72,54 +72,57 @@ def main():
 		info = info[2:]
 		i = 0
 		while i < len(info):
+			# print("({}/{}): {} {} {}".format(i, len(info), senator, info[i], info[i+1]))
 			tf[senator][info[i]] = float(info[i+1])
 			i += 2
 
-	male_tf = {}
-	female_tf = {}
+	dem_tf = {}
+	rep_tf = {}
 	for senator in sentimentClass: 
-		if senator_info[senator].gender == 'M':
+		if senator_info[senator].party == 'D':
 			for term, freq in tf[senator].items():
-				if term not in male_tf:
-					male_tf[term] = 0
-				male_tf[term] += freq
-		elif senator_info[senator].gender == 'F':
+				if term not in dem_tf:
+					dem_tf[term] = 0
+				dem_tf[term] += freq
+		elif senator_info[senator].party == 'R':
 			for term, freq in tf[senator].items():
-				if term not in female_tf:
-					female_tf[term] = 0
-				female_tf[term] += freq
+				if term not in rep_tf:
+					rep_tf[term] = 0
+				rep_tf[term] += freq
 
-	print("Male Top 20 Words:")
-	printTopK(male_tf, 20)
-	print("Female Top 20 Words:")
-	printTopK(female_tf, 20)
+	print("Democrart Top 20 Words:")
+	printTopK(dem_tf, 20)
+	print("Republican Top 20 Words:")
+	printTopK(rep_tf, 20)
 
 	total = 0.0
-	for term, freq in male_tf.items():
+	for term, freq in dem_tf.items():
 		total += freq
-	for term in male_tf:
-		male_tf[term] /= float(total)
+	for term in dem_tf:
+		dem_tf[term] /= float(total)
 	total = 0.0
-	for term, freq in female_tf.items():
+	for term, freq in rep_tf.items():
 		total += freq
-	for term in female_tf:
-		female_tf[term] /= float(total)
+	for term in rep_tf:
+		rep_tf[term] /= float(total)
 
-	adjusted_male_tf = {}
-	for term in male_tf:
-		if term in female_tf:
-			adjusted_male_tf[term] = male_tf[term] - female_tf[term]
+	adjusted_dem_tf = {}
+	for term in dem_tf:
+		if term in rep_tf:
+			adjusted_dem_tf[term] = dem_tf[term] - rep_tf[term]
 		else:
-			adjusted_male_tf[term] = male_tf[term]
-	adjusted_female_tf = {}
-	for term in female_tf:
-		if term in male_tf:
-			adjusted_female_tf[term] = female_tf[term] - male_tf[term]
+			adjusted_dem_tf[term] = dem_tf[term]
+	adjusted_rep_tf = {}
+	for term in rep_tf:
+		if term in dem_tf:
+			adjusted_rep_tf[term] = rep_tf[term] - dem_tf[term]
+		else:
+			adjusted_rep_tf[term] = rep_tf[term]
 
-	print("\n\nAdjusted male Top 20 Words:")
-	printTopK(adjusted_male_tf, 20)
-	print("Adjusted female Top 20 Words:")
-	printTopK(adjusted_female_tf, 20)
+	print("\n\nAdjusted Democrat Top 20 Words:")
+	printTopK(adjusted_dem_tf, 20)
+	print("Adjusted Republican Top 20 Words:")
+	printTopK(adjusted_rep_tf, 20)
 
 	malePosCount = 0; femalePosCount = 0
 	maleNeuCount = 0; femaleNeuCount = 0
