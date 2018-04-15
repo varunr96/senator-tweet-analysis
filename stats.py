@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import operator
 
+fig, ax = plt.subplots()
+
 # Attach a text label above each bar displaying its height
 def autolabel(rects):
     for rect in rects:
@@ -10,6 +12,40 @@ def autolabel(rects):
         ax.text(float(rect.get_x() + rect.get_width()/2.), 1.0*height,
                 '%d' % float(height),
                 ha='center', va='bottom')
+
+def plot(list1, list2, category):
+	category1 = ''
+	category2 = ''
+	if category == 'Gender':
+		category1 = "Male"
+		category2 = "Female"
+	if category == 'Political Party':
+		category1 = "Democrat"
+		category2 = "Republican"
+	if category == 'Age':
+		category1 = 'Younger than or equal to 62'
+		category2 = 'Older than 62'
+	total1 = sum(list1)
+	total2 = sum(list2)
+	N = 3
+	width = 0.35
+	ind = np.arange(N)
+	values_1 = (list1[0]*100/total1, list1[1]*100/total1, list1[2]*100/total1)
+	values_2 = (list2[0]*100/total2, list2[1]*100/total2, list1[2]*100/total2)
+	rects1 = ax.bar(ind, values_1, width, color='r')
+	rects2 = ax.bar(ind + width, values_2, width, color='b')
+
+	ax.set_ylabel("Senator Sentiment Percentage")
+	ax.set_xlabel("Gun/Guns/Control Topic")
+	ax.set_title("Percentage of Senator Sentiments by " + category)
+	ax.set_xticks(ind + width / 2)
+	ax.set_xticklabels(('POS', 'NEU', 'NEG'))
+
+	ax.legend((rects1[0], rects2[0]), (category1, category2))
+	autolabel(rects1)
+	autolabel(rects2)
+
+	plt.show()
 
 senator_info = {}
 senator_handles_file = open("handles.txt", "r").read().split()
@@ -98,14 +134,14 @@ youngPosCount = 0; oldPosCount = 0
 youngNeuCount = 0; oldNeuCount = 0
 youngNegCount = 0; oldNegCount = 0
 for senator in sentimentClass: 
-	if senator_info[senator].age >= 40 and senator_info[senator].age <= 62:
+	if senator_info[senator].age <= 62:
 		if sentimentClass[senator] == "pos":
 			youngPosCount += 1
 		elif sentimentClass[senator] == "neg":
 			youngNegCount += 1
 		else:
 			youngNeuCount += 1
-	elif senator_info[senator].age > 62:
+	else:
 		if sentimentClass[senator] == "pos":
 			oldPosCount += 1
 		elif sentimentClass[senator] == "neg":
@@ -113,28 +149,14 @@ for senator in sentimentClass:
 		else:
 			oldNeuCount += 1
 
-maleCount = float(malePosCount + maleNeuCount + maleNegCount)
-femaleCount = float(femalePosCount + femaleNeuCount + femaleNegCount)
+gender1 = [malePosCount, maleNeuCount, maleNegCount]
+gender2 = [femalePosCount, femaleNeuCount, femaleNegCount]
+party1 = [demPosCount, demNeuCount, demNegCount]
+party2 = [repPosCount, repNeuCount, repNegCount]
+age1 = [youngPosCount, youngNeuCount, youngNegCount]
+age2 = [oldPosCount, oldNeuCount, oldNegCount]
 
-
-# code to graph. for eveyr topic we will have 3 bar graphs
-N = 3
-width = 0.35
-ind = np.arange(N)
-maleValues = (malePosCount*100/maleCount, maleNeuCount*100/maleCount, maleNegCount*100/maleCount)
-femaleValues = (femalePosCount*100/femaleCount, femaleNeuCount*100/femaleCount, femaleNegCount*100/femaleCount)
-fig, ax = plt.subplots()
-rects1 = ax.bar(ind, maleValues, width, color='r')
-rects2 = ax.bar(ind + width, femaleValues, width, color='b')
-
-ax.set_ylabel("Senator Sentiment Percentage")
-ax.set_xlabel("Gun/Guns/Control Topic")
-ax.set_title("Percentage of Senator Sentiments by Gender")
-ax.set_xticks(ind + width / 2)
-ax.set_xticklabels(('POS', 'NEU', 'NEG'))
-
-ax.legend((rects1[0], rects2[0]), ('Male', 'Female'))
-autolabel(rects1)
-autolabel(rects2)
-
-plt.show()
+plot(gender1, gender2, "Gender")
+print("gender done")
+plot(party1, party2, "Political Party")
+plot(age1, age2, "Age")
