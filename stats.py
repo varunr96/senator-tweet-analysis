@@ -89,8 +89,6 @@ def main():
 					female_tf[term] = 0
 				female_tf[term] += freq
 
-	sorted_male_tf = sorted(male_tf.items(), key=operator.itemgetter(1), reverse=True)
-	sorted_female_tf = sorted(female_tf.items(), key=operator.itemgetter(1), reverse=True)
 	print("Male Top 20 Words:")
 	printTopK(male_tf, 20)
 	print("Female Top 20 Words:")
@@ -117,6 +115,11 @@ def main():
 	for term in female_tf:
 		if term in male_tf:
 			adjusted_female_tf[term] = female_tf[term] - male_tf[term]
+
+	print("\n\nAdjusted male Top 20 Words:")
+	printTopK(adjusted_male_tf, 20)
+	print("Adjusted female Top 20 Words:")
+	printTopK(adjusted_female_tf, 20)
 
 	malePosCount = 0; femalePosCount = 0
 	maleNeuCount = 0; femaleNeuCount = 0
