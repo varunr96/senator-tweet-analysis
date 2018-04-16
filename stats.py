@@ -183,9 +183,9 @@ def main():
 	age1 = [youngPosCount, youngNeuCount, youngNegCount]
 	age2 = [oldPosCount, oldNeuCount, oldNegCount]
 
-	# plot(gender1, gender2, "Gender")
+	plot(gender1, gender2, "Gender")
 	# plot(party1, party2, "Political Party")
-	plot(age1, age2, "Age")
+	# plot(age1, age2, "Age")
 
 if __name__ == "__main__":
     main()

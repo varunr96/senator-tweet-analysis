@@ -81,6 +81,7 @@ def main():
 
     senator_topic_sentiments = {}
 
+    # modify topics for which topic you want to parse for
     topics = ["gun", "guns"]
     count = 0
     for senator in tweets:
