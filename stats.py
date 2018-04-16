@@ -36,7 +36,7 @@ def plot(list1, list2, category):
 	rects2 = ax.bar(ind + width, values_2, width, color='b')
 
 	ax.set_ylabel("Senator Sentiment Percentage")
-	ax.set_xlabel("Gun/Guns/Control Topic")
+	ax.set_xlabel("Gun Control Topic")
 	ax.set_title("Percentage of Senator Sentiments by " + category)
 	ax.set_xticks(ind + width / 2)
 	ax.set_xticklabels(('POS', 'NEU', 'NEG'))
@@ -183,8 +183,8 @@ def main():
 	age1 = [youngPosCount, youngNeuCount, youngNegCount]
 	age2 = [oldPosCount, oldNeuCount, oldNegCount]
 
-	plot(gender1, gender2, "Gender")
-	plot(party1, party2, "Political Party")
+	# plot(gender1, gender2, "Gender")
+	# plot(party1, party2, "Political Party")
 	plot(age1, age2, "Age")
 
 if __name__ == "__main__":
