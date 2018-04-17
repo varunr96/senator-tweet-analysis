@@ -44,8 +44,10 @@ class Senator:
 def getAllTokens(senator_tweet_text):
     tokens = preprocess.tokenizeText(senator_tweet_text)
     tokens = preprocess.removeStopwords(tokens)
-    tokens = [t for t in tokens if len(t) > 1]
+    # We decided to remove all 1-character words b/c they do not contain meaning
+    tokens = [t for t in tokens if len(t) > 1] 
     for token in tokens:
+        # account for common internet slang
         if token == 'w/':
             token = 'with'
     return tokens

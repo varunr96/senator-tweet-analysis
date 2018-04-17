@@ -70,64 +70,74 @@ def main():
 	filename = sys.argv[1]
 	f = open(filename, 'r').read().split()
 	for line in f:
-		# parsing line to retrieve senator username 
-		# and the tf's associated with their most frequent words
+		# parsing line to retrieve senator twitter data
+		# senator twitter data format: 
+		# twitter_user_id,sentiment_classification,term1,weight1,term2,weight2,...
 		info = line.split(',')
 		senator = info[0]
-
 		tf[senator] = {}
 		sentimentClass[senator] = info[1]
+
+		# Recreate the term-frequency dictionary for this senator 
+		# Note: doc corpus = all RELEVENT tweets from the senator
 		info = info[2:]
 		i = 0
 		while i < len(info):
-			# print("({}/{}): {} {} {}".format(i, len(info), senator, info[i], info[i+1]))
 			tf[senator][info[i]] = float(info[i+1])
 			i += 2
 	# code specifically for gender tf's
 	male_tf = {}
 	female_tf = {}
 	for senator in sentimentClass: 
-		if senator_info[senator].party == 'D':
+		if senator_info[senator].gender == 'M':
 			for term, freq in tf[senator].items():
-				if term not in dem_tf:
-					dem_tf[term] = 0
-				dem_tf[term] += freq
-		elif senator_info[senator].party == 'R':
+				if term not in male_tf:
+					male_tf[term] = 0
+				# aggregate all tf's for all male senators
+				male_tf[term] += freq
+		elif senator_info[senator].gender == 'F':
 			for term, freq in tf[senator].items():
-				if term not in rep_tf:
-					rep_tf[term] = 0
-				rep_tf[term] += freq
+				if term not in female_tf:
+					female_tf[term] = 0
+				# aggregate all tf's for all female senators
+				female_tf[term] += freq
 
-	print("Democrart Top 20 Words:")
-	printTopK(dem_tf, 20)
-	print("Republican Top 20 Words:")
-	printTopK(rep_tf, 20)
+	print("Male Top 20 Words:")
+	printTopK(male_tf, 20)
+	print("Female Top 20 Words:")
+	printTopK(female_tf, 20)
 
 	# code for calculating adjusted top 20 words
 	total = 0.0
-	for term, freq in dem_tf.items():
+	for term, freq in male_tf.items():
 		total += freq
-	for term in dem_tf:
-		dem_tf[term] /= float(total)
+	for term in male_tf:
+		male_tf[term] /= float(total)
 	total = 0.0
-	for term, freq in rep_tf.items():
+	for term, freq in female_tf.items():
 		total += freq
-	for term in rep_tf:
-		rep_tf[term] /= float(total)
+	for term in female_tf:
+		female_tf[term] /= float(total)
 
 	# subtracting words that appear in opposite sides tf corpus
 	# used to give more weight to words said specifically by a certain group
 	adjusted_male_tf = {}
+	adjusted_female_tf = {}
 	for term in male_tf:
 		if term in female_tf:
 			adjusted_male_tf[term] = male_tf[term] - female_tf[term]
 		else:
-			adjusted_rep_tf[term] = rep_tf[term]
+			adjusted_male_tf[term] = male_tf[term]
+	for term in female_tf:
+		if term in male_tf:
+			adjusted_female_tf[term] = female_tf[term] - male_tf[term]
+		else:
+			adjusted_female_tf[term] = female_tf[term]
 
-	print("\n\nAdjusted Democrat Top 20 Words:")
-	printTopK(adjusted_dem_tf, 20)
-	print("Adjusted Republican Top 20 Words:")
-	printTopK(adjusted_rep_tf, 20)
+	print("\n\nAdjusted Male Top 20 Words:")
+	printTopK(adjusted_male_tf, 20)
+	print("Adjusted Female Top 20 Words:")
+	printTopK(adjusted_female_tf, 20)
 
 	# counting values needed for bar graphs
 	# specifically for gender
