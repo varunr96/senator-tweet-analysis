@@ -2,9 +2,11 @@ from textblob import TextBlob
 import json, re
 import preprocess
 
+# clean tweet for unnecesary symbols and what not
 def clean_tweet(tweet):
     return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split())
 
+# using textblob API to get sentiment of tweet
 def getTweetSentiment(tweet):
     # create TextBlob object of passed tweet text
     analysis = TextBlob(clean_tweet(tweet))
@@ -16,6 +18,7 @@ def getTweetSentiment(tweet):
     else:
         return 'negative'
 
+# class needed for return output
 class TopicTweet:
     def __init__(self):
         self.positive_count = 0
@@ -24,6 +27,7 @@ class TopicTweet:
         self.type = ""
         self.tf = {}
 
+# filling this info out from "handles.txt"
 class Senator:
     def __init__(self, username, party, state, gender, age):
         self.username = username
@@ -36,6 +40,7 @@ class Senator:
         self.negative_count = 0
         self.neutral_count = 0
 
+# preprocess and tokenize tweets
 def getAllTokens(senator_tweet_text):
     tokens = preprocess.tokenizeText(senator_tweet_text)
     tokens = preprocess.removeStopwords(tokens)
@@ -45,6 +50,7 @@ def getAllTokens(senator_tweet_text):
             token = 'with'
     return tokens
 
+# get sentiment per topic for each senator and also calculate tf for the topic
 def topicSentiment(sentiment, topics, senator, senator_tweet_tokens, senator_topic_sentiments):
     proceed = False
     for topic in topics:
@@ -70,9 +76,11 @@ def topicSentiment(sentiment, topics, senator, senator_tweet_tokens, senator_top
         #Debug
 
 def main():
+    # load all tweets into python readable and parsable format
     tweets_file = open("tweets.json", "r")
     tweets = json.loads(tweets_file.read()) # key: senator username value: list of {'date', 'text'}
 
+    # load all senator information from "handles.txt" into dictionary
     senator_info = {}
     senator_handles_file = open("handles.txt", "r").read().split()
     for line in senator_handles_file:
@@ -84,11 +92,13 @@ def main():
     # modify topics for which topic you want to parse for
     topics = ["gun", "guns"]
     count = 0
+    # going through every senator
     for senator in tweets:
         count += 1
         print("senator # " + str(count) + ": " + senator)
         senator_tweets = tweets[senator]
         senator_info[senator].total_tweets = len(tweets[senator])
+        # storing overall sentiments in general and topic specific
         for senator_tweet in senator_tweets:
             tokens = getAllTokens(senator_tweet['text'])
             sentiment = getTweetSentiment(senator_tweet['text'])
@@ -100,6 +110,7 @@ def main():
                 senator_info[senator].neutral_count += 1
             topicSentiment(sentiment, topics, senator, tokens, senator_topic_sentiments)
             
+    # calculating what type overall sentiment a senator is for a topic
     for senator in senator_topic_sentiments:
         largest = -1
         type = ""
@@ -114,6 +125,7 @@ def main():
             type = "neu"
         senator_topic_sentiments[senator].type = type
 
+    # calculating term frequency totals
     for senator in senator_topic_sentiments:
         total = 0.0
         for term in senator_topic_sentiments[senator].tf:
@@ -121,6 +133,7 @@ def main():
         for term in senator_topic_sentiments[senator].tf:
             senator_topic_sentiments[senator].tf[term] /= float(total)
 
+    # outputting information in format to be read by stats.py
     filename = ""
     for topic in topics:
         filename = filename + "_" + topic
@@ -132,8 +145,6 @@ def main():
             f.write("," + term + "," + str(tf))
         f.write("\n")
     f.close()
-
-
 
 if __name__ == "__main__":
     main()
