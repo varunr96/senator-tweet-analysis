@@ -71,7 +71,7 @@ def main():
 	f = open(filename, 'r').read().split()
 	for line in f:
 		# parsing line to retrieve senator twitter data
-		# senator twitter data format: 
+		# senator twitter data format:
 		# twitter_user_id,sentiment_classification,term1,weight1,term2,weight2,...
 		info = line.split(',')
 		senator = info[0]
