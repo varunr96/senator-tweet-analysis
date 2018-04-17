@@ -13,6 +13,7 @@ def autolabel(rects):
                 '%d' % float(height),
                 ha='center', va='bottom')
 
+# function to plot the bar graphs
 def plot(list1, list2, category):
 	category1 = ''
 	category2 = ''
@@ -30,13 +31,15 @@ def plot(list1, list2, category):
 	N = 3
 	width = 0.35
 	ind = np.arange(N)
+	# we want the percents so we divide by total # and multiply by 100
 	values_1 = (list1[0]*100/total1, list1[1]*100/total1, list1[2]*100/total1)
 	values_2 = (list2[0]*100/total2, list2[1]*100/total2, list2[2]*100/total2)
+	# for 3 seperate graphs
 	rects1 = ax.bar(ind, values_1, width, color='r')
 	rects2 = ax.bar(ind + width, values_2, width, color='b')
 
 	ax.set_ylabel("Senator Sentiment Percentage")
-	ax.set_xlabel("Gun/Guns/Control Topic")
+	ax.set_xlabel("Gun Control Topic")
 	ax.set_title("Percentage of Senator Sentiments by " + category)
 	ax.set_xticks(ind + width / 2)
 	ax.set_xticklabels(('POS', 'NEU', 'NEG'))
@@ -47,23 +50,28 @@ def plot(list1, list2, category):
 
 	plt.show()
 
+# print top k words in a format
 def printTopK(dict, k):
 	sorted_dict = sorted(dict.items(), key=operator.itemgetter(1), reverse=True)
 	for i in range(k):
 		print("#{}: {}".format(i, sorted_dict[i]))
 
 def main():
+	# recreating senator information including age, party, and gender
 	senator_info = {}
 	senator_handles_file = open("handles.txt", "r").read().split()
 	for line in senator_handles_file:
 	    state, gender, username, age, party = line.split(',')
 	    senator_info[username] = sentiment.Senator(username, party, state, gender, age)
 
+	# reading passed in files from command line
 	sentimentClass = {}
 	tf = {}
 	filename = sys.argv[1]
 	f = open(filename, 'r').read().split()
 	for line in f:
+		# parsing line to retrieve senator username 
+		# and the tf's associated with their most frequent words
 		info = line.split(',')
 		senator = info[0]
 
@@ -75,9 +83,9 @@ def main():
 			# print("({}/{}): {} {} {}".format(i, len(info), senator, info[i], info[i+1]))
 			tf[senator][info[i]] = float(info[i+1])
 			i += 2
-
-	dem_tf = {}
-	rep_tf = {}
+	# code specifically for gender tf's
+	male_tf = {}
+	female_tf = {}
 	for senator in sentimentClass: 
 		if senator_info[senator].party == 'D':
 			for term, freq in tf[senator].items():
@@ -95,6 +103,7 @@ def main():
 	print("Republican Top 20 Words:")
 	printTopK(rep_tf, 20)
 
+	# code for calculating adjusted top 20 words
 	total = 0.0
 	for term, freq in dem_tf.items():
 		total += freq
@@ -106,16 +115,12 @@ def main():
 	for term in rep_tf:
 		rep_tf[term] /= float(total)
 
-	adjusted_dem_tf = {}
-	for term in dem_tf:
-		if term in rep_tf:
-			adjusted_dem_tf[term] = dem_tf[term] - rep_tf[term]
-		else:
-			adjusted_dem_tf[term] = dem_tf[term]
-	adjusted_rep_tf = {}
-	for term in rep_tf:
-		if term in dem_tf:
-			adjusted_rep_tf[term] = rep_tf[term] - dem_tf[term]
+	# subtracting words that appear in opposite sides tf corpus
+	# used to give more weight to words said specifically by a certain group
+	adjusted_male_tf = {}
+	for term in male_tf:
+		if term in female_tf:
+			adjusted_male_tf[term] = male_tf[term] - female_tf[term]
 		else:
 			adjusted_rep_tf[term] = rep_tf[term]
 
@@ -124,6 +129,8 @@ def main():
 	print("Adjusted Republican Top 20 Words:")
 	printTopK(adjusted_rep_tf, 20)
 
+	# counting values needed for bar graphs
+	# specifically for gender
 	malePosCount = 0; femalePosCount = 0
 	maleNeuCount = 0; femaleNeuCount = 0
 	maleNegCount = 0; femaleNegCount = 0
@@ -143,6 +150,8 @@ def main():
 			else:
 				femaleNeuCount += 1
 
+	# counting values needed for bar graphs
+	# specifically for party
 	demPosCount = 0; repPosCount = 0
 	demNeuCount = 0; repNeuCount = 0
 	demNegCount = 0; repNegCount = 0
@@ -162,6 +171,8 @@ def main():
 			else:
 				repNeuCount += 1
 
+	# counting values needed for bar graphs
+	# specifically for age
 	youngPosCount = 0; oldPosCount = 0
 	youngNeuCount = 0; oldNeuCount = 0
 	youngNegCount = 0; oldNegCount = 0
@@ -179,6 +190,7 @@ def main():
 			elif sentimentClass[senator] == "neg":
 				oldNegCount += 1
 
+	# creating lists of all values we care about for graphing
 	gender1 = [malePosCount, maleNeuCount, maleNegCount]
 	gender2 = [femalePosCount, femaleNeuCount, femaleNegCount]
 	party1 = [demPosCount, demNeuCount, demNegCount]
@@ -186,9 +198,12 @@ def main():
 	age1 = [youngPosCount, youngNeuCount, youngNegCount]
 	age2 = [oldPosCount, oldNeuCount, oldNegCount]
 
+	# can only show one graph at a time
+	# need to uncomment line for graph we want to see
+	# and comment other lines
 	plot(gender1, gender2, "Gender")
-	plot(party1, party2, "Political Party")
-	plot(age1, age2, "Age")
+	# plot(party1, party2, "Political Party")
+	# plot(age1, age2, "Age")
 
 if __name__ == "__main__":
     main()
