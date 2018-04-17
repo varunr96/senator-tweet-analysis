@@ -1,6 +1,6 @@
 Senator Tweet Analysis
 
-Need to run 
+Need to run
 ```
 pip install tweepy==3.3.0
 ```
@@ -10,7 +10,7 @@ First run
 ```
 python getTweets.py
 ```
-to get tweets.json which is json file of all the senators tweets and timestamps
+to get tweets.json which is json file of all the senators tweets and timestamps which will take around 4 hours because of Twitter's API call limitations. You will require Twitter credentials in the form of consumer_key, consumer_secret, access_token, acess_secret. We will attach "tweets.json" which is the output of getTweets.py
 
 Then run
 ```
@@ -18,7 +18,7 @@ python sentiment.py
 ```
 to create a text file related to information needed for a specific topic.
 Modify line 85 in "sentiment.py" to choose which topic you would like to analyze
-This should write to a file related to the topic you choose i.e. if topics topics = ["gun", "guns"] then will return gun_guns.txt
+This should write to a file related to the topic you choose i.e. if topics = ["gun", "guns"] then will return gun_guns.txt
 
 Finally run
 ```
